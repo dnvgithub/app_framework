@@ -1,0 +1,22 @@
+
+input {
+    z-index: 0;
+}
+
+.clear-search {
+    position: absolute;
+    right: 0px;
+    top: 5px;
+    bottom: 0px;
+    width: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    z-index: 55;
+}
+
+.clear-search-icon {
+    position: relative;
+    right: 8px;
+
+}

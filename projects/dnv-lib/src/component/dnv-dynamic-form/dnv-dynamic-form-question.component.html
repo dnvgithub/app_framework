@@ -1,0 +1,78 @@
+<div [formGroup]="formGroup">
+
+  <div [ngSwitch]="question.controlType">
+
+    <div *ngSwitchCase="'text'" class="form-group text">
+      <label [attr.for]="question.name">{{question.alias}}</label><span class="required"
+        *ngIf="!question.nullable">*</span>
+      <input [formControlName]="question.name" [id]="question.name" type="text" [readonly]="question.readonly"
+        class="form-control" title="{{ question.alias }}">
+    </div>
+
+    <div *ngSwitchCase="'number'" class="form-group text">
+      <label [attr.for]="question.name">{{question.alias}}</label><span class="required"
+        *ngIf="!question.nullable">*</span>
+      <input [formControlName]="question.name" [id]="question.name" [readonly]="question.readonly" class="form-control"
+        type="number" title="{{ question.alias}}">
+    </div>
+
+    <div *ngSwitchCase="'text-range'" class="form-group text">
+      <label [attr.for]="question.name">{{question.alias}}</label><span class="required"
+        *ngIf="!question.nullable">*</span>
+      <input [formControlName]="question.name" [id]="question.name" type="number" [readonly]="question.readonly"
+        class="form-control" [min]="question.options[0]" [max]="question.options[1]" title="{{ question.alias}}">
+    </div>
+
+    <div *ngSwitchCase="'radio'" class="form-group radio" [class.flow]="nextQuestion.controlType == 'radio'">
+      <label [attr.for]="question.name">{{question.alias}}</label><span class="required"
+        *ngIf="!question.nullable">*</span>
+      <div class="row m-0">
+        <div *ngFor="let opt of question.options; index as i;">
+          <div class="form-check-inline">
+            <input type="radio" [id]="question.name+i" class="form-check-input" [formControlName]="question.name"
+              [value]="opt.code" title="{{ opt.name }}" />
+            <label [attr.for]="question.name+i" class="form-check-label">{{opt.name}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngSwitchCase="'dropdown'"
+      class="form-group dropdown {{nextQuestion.controlType == 'dropdown' ? 'float-left' : ''}}">
+      <label [attr.for]="question.name">{{question.alias}}</label><span class="required"
+        *ngIf="!question.nullable">*</span>
+      <select [id]="question.name" [formControlName]="question.name" class="form-control" title="{{ question.alias}}">
+        <option *ngFor="let opt of question.options" [value]="opt.code" title="{{opt.name}}">{{opt.name}}</option>
+      </select>
+
+    </div>
+
+    <div *ngSwitchCase="'textarea'" class="form-group textarea">
+      <label [attr.for]="question.name">{{question.alias}}</label><span class="required"
+        *ngIf="!question.nullable">*</span>
+      <textarea class="form-control" [formControlName]="question.name" [id]="question.name" rows="2"
+        title="{{ question.alias}}"></textarea>
+    </div>
+
+    <div *ngSwitchCase="'file'" class="form-group file">
+      <label [attr.for]="question.name">{{question.alias}}</label><br />
+      <dnv-file-uploader [formControlName]="question.name" [fileFieldID]="question.name"></dnv-file-uploader>
+    </div>
+
+    <div *ngSwitchCase="'date'" class="form-group date">
+      <label [attr.for]="question.name">{{question.alias}}</label><span class="required"
+        *ngIf="!question.nullable">*</span>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <button class="btn btn-outline-secondary" type="button" (click)="d.toggle()"
+            title="{{question.alias}} click to open datepicker">
+            <i class="fas fa-calendar-alt"></i>
+          </button>
+        </div>
+        <input [id]="question.name" class="form-control" placeholder="yyyy-mm-dd" [formControlName]="question.name"
+          title={{question.alias}} ngbDatepicker #d="ngbDatepicker" navigation="arrows" appDateInput
+          [nullable]="question.nullable">
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div *ngIf="legendState.legendLayers && legendState.legendLayers.length > 0 else noLegend">
+<div class="p-1">
+  <div *ngFor="let legendLayer of legendState.legendLayers; let i=index;" class="mt-2 ml-2">
+    <div class="row">
+      <div class="col-auto p-1 ml-2 mt-1" id="legendLayer{{i}}" style="font-size: 0.75rem;">{{ legendLayer.layerName | uppercase }}</div>
+      <div class="col">
+        <hr>
+      </div>
+    </div>
+    <div class="row" *ngFor="let legend of legendLayer.legend">
+      <div class="layer-row">
+        <img src="{{getImgSrc(legend)}}" alt="{{ getLegendLabel(legend, legendLayer) }}">
+        <span class="ml-1" style="font-size: 1rem;">{{ getLegendLabel(legend, legendLayer) }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<ng-template #noLegend><div class="mt-1 ml-2">Add a layer to see legend</div></ng-template>

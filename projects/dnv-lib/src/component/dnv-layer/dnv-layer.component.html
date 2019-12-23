@@ -1,0 +1,41 @@
+<div class="p-1 layersContent">
+  <div class="ml-2">
+
+    <div class="row mt-2 layer-title" *ngIf="isLayerActive()">
+      <div class="col-auto p-1 ml-2 mt-1" id="activeLayersDiv" style="font-size: 0.75rem;">ACTIVE LAYERS</div>
+      <div class="col hr">
+        <hr>
+      </div>
+    </div>
+    <div class="row" *ngIf="isLayerActive()" id="activeLayersGroup" cdkDropList (cdkDropListDropped)="drop($event)">
+      <span class="button-wrapper" *ngFor="let layer of activeLayers()" cdkDrag>
+        <button type="button" class="btn layer-label text-left bg-transparent" (click)="setAvailableLayer(layer)"
+          title="Remove {{ layer.name }} from Active Layers">
+          <i class="fas fa-times"></i> <span class="ml-2" style="font-size: 1rem;">{{ layer.name }}</span>
+        </button>
+        <button class="ml-1 text-center filter-toggle btn btn-sm float-right"
+          [class.btn-outline-secondary]="!layer.showFilterPanel" [class.btn-secondary]="layer.showFilterPanel"
+          (click)="toggleShowFilterPanel(layer)" *ngIf="layer.canFilter" title="Open Filter">FILTER <i
+            class="fas fa-filter" *ngIf="isLayerFiltered(layer)" title="Toggle Layer Filters"></i>
+        </button>
+      </span>
+    </div>
+
+    <div class="row mt-2 layer-title" *ngIf="isLayerAvailable()">
+      <div class="col-auto p-1 ml-2 mt-1" style="font-size: 0.75rem;" id="availableLayersDiv">AVAILABLE LAYERS</div>
+      <div class="col hr">
+        <hr>
+      </div>
+    </div>
+    <div class="row" id="availableLayersGroup" class="availableLayers">
+      <span class="w-100" *ngFor="let layer of availableLayers()">
+        <button type="button" class="btn layer-label text-left bg-transparent" (click)="setActiveLayer(layer)"
+          title="Add {{ layer.name }} to Active Layers">
+          <i class="fas fa-plus"></i> <span class="ml-2" style="font-size: 1rem;">{{ layer.name }}</span>
+        </button>
+
+      </span>
+    </div>
+
+  </div>
+</div>

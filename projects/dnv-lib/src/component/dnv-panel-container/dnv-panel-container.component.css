@@ -1,0 +1,29 @@
+.dnv-panel-container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+}
+
+.dnv-main-panel {
+    max-height: 100%;
+    flex: 1 1 100%;
+    z-index: 0;
+}
+
+.dnv-side-panel {
+    overflow: visible;
+    flex: 1 1 auto;
+    z-index: 0;
+}
+
+@media only screen and (max-width: 768px) {
+    .dnv-panel-container {
+        flex-direction: column;
+    }
+    .dnv-side-panel {
+        width: 100%;
+        height: 3em;
+    }
+}

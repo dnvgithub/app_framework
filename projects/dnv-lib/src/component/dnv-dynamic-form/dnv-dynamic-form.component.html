@@ -1,0 +1,24 @@
+<ng-template #content let-modal>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form" novalidate>
+    <div class="modal-header">
+      <h5 class="modal-title">{{header}}</h5>
+      <button type="button" class="close" aria-label="Close" (click)="dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div *ngFor="let question of questions; let i = index" class="form-group">
+        <dnv-question [submitted]="submitted" [question]="question" [formGroup]="form"
+          [nextQuestion]="questions[i+1] ? questions[i+1] : questions[i]"></dnv-question>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="btn-wrapper">
+        <button type="button" class="btn btn-secondary" (click)="dismiss()">Cancel</button>
+        <button type="submit" class="btn btn-primary float-right" [disabled]="!form.valid">Save changes</button>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<button class="btn btn-secondary" (click)="open(content)" title="{{buttonLabel}}">{{buttonLabel}}</button>

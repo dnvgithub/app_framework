@@ -1,0 +1,34 @@
+<div class="p-1">
+    <div class="ml-2">
+
+        <div class="row layerTitle">
+            <div class="col-auto p-1 ml-3 mt-1" id="activeLayersDiv" style="font-size: 0.75rem;">LAYER FILTER</div>
+
+            <div class="layerName">
+                <span class="label">Layer</span>
+                <strong class="col-auto">{{ getLayerName() }}</strong>
+            </div>
+        </div>
+        <div class="filters-container" [style.top.px]="headerHeight">
+            <div class="form-group mt-3" *ngFor="let field of _fields">
+                {{ field.alias }}
+
+                <ng-select [items]="_items[field.name]" [multiple]="field.selectMultiple" bindLabel="name"
+                    bindValue="code" [(ngModel)]="_models[field.name]" (change)="onChange($event)"
+                    (search)="onSearch(field.name, $event)" (focus)="onFocus($event)" appendTo="body" title="Filter on {{field.name}}">
+                </ng-select>
+            </div>
+        </div>
+
+        <div class="filters-bottom">
+            <div class="form-group mt-3">
+                <button type="button" class="btn btn-danger" (click)="onClearFilter()" title="Clear Filter">Clear Filter</button>
+
+                <button (click)="onZoomToFeatures()" class="btn btn-outline-secondary" title="Zoom To Filtered Features">Zoom To Features</button>
+
+            </div>
+            <p class="p-1">{{ featureCount() }} <a href={{link}} (click)="downloadFeatures()" class="downloadFeatures" title="Download Features"><i class="fas fa-download"></i></a></p> 
+        </div>
+
+    </div>
+</div>

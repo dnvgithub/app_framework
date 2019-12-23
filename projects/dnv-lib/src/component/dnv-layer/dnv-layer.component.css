@@ -1,0 +1,17 @@
+.col.hr{
+  padding-right: 0px;
+}
+
+.row{
+  max-width: 100%;
+}
+
+
+.filter-toggle .fa-filter{
+  margin-left: 3px;
+}
+
+.button-wrapper{
+  width: 100%;
+  display: flex;
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "dnv-lib": {
+      "root": "projects/dnv-lib",
+      "sourceRoot": "projects/dnv-lib/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/dnv-lib/tsconfig.lib.json",
+            "project": "projects/dnv-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/dnv-lib/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/dnv-lib/src/test.ts",
+            "tsConfig": "projects/dnv-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/dnv-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/dnv-lib/tsconfig.lib.json",
+              "projects/dnv-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "dnv-lib"
+}

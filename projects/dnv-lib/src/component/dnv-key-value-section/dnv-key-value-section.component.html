@@ -1,0 +1,18 @@
+<div *ngIf="kvSections.length > 0" class="panels">
+  <div *ngFor="let section of kvSections;  let i = index" class="panel">
+    <button type="button" class="btn btn-link px-2" data-toggle="collapse"
+      [attr.data-target]="'#'+section.title.replace(' ', '')" [attr.aria-expanded]="i > 0 ? false : true"
+      [attr.aria-controls]="'#'+section.title.replace(' ', '')"
+      (click)="expandPanel('#'+section.title.replace(' ', ''))">
+      <h4 class="float-left">{{section.title}} </h4>
+      <i class="fas fa-chevron-down float-right fa-xs"></i>
+      <i class="fas fa-chevron-up float-right  fa-xs"></i>
+    </button>
+
+    <div id="{{section.title.replace(' ', '')}}" class="collapse px-2 show" data-parent="#inspections">
+      <dnv-key-value-list [kvpairs]="section.kvPair" [spinnerStatus]="spinnerStatus" [excludesList]="excludesList">
+      </dnv-key-value-list>
+    </div>
+
+  </div>
+</div>

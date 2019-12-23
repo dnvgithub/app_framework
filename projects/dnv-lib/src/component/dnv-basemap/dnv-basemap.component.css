@@ -1,0 +1,28 @@
+.basemap-container{
+  z-index: 101;
+  background-color: #ffffff;
+}
+
+.clear:after{
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.basemap-tiles label{
+  display: block;
+}
+
+.basemap-list{
+  position: absolute;
+  transition-property: all;
+  transition-duration: .8s;  
+  z-index: 100;
+}
+
+.layers-div-slide{
+  bottom: -400px;
+  transition-property: all;
+  transition-duration: .8s;
+  z-index: 1;
+}

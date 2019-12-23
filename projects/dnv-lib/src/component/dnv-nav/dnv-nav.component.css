@@ -1,0 +1,17 @@
+
+.nav.navbar-nav {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: auto;
+}
+
+ul li button {
+  outline: none;
+  text-decoration: none;
+  /*text-decoration-line: none;*/
+}
+
+.button-active {
+  background-color: rgba(182, 182, 182, 1.0);
+}

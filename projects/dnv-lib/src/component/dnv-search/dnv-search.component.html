@@ -1,0 +1,17 @@
+<ng-template #rt let-r="result" let-t="term">
+  <div>
+    <i class="mr-1 {{getClass(r.type)}}"></i> {{ r.name }}
+  </div>
+</ng-template>
+
+<div class="input-group search">
+
+  <input type="text" id="searchInputId" placeholder="Search by address, street, or park" class="form-control"
+    style="border-radius: .25rem;" [resultTemplate]="rt" [inputFormatter]="formatter" [ngbTypeahead]="search"
+    (selectItem)="onSelectItem($event)" (keyup.enter)="onKeyUp()" #searchInput
+    title="Search by address, street, or park" />
+
+  <span *ngIf="searchInput.value" class="clear-search" (click)="onClearClicked(searchInput)"><i
+      class="fas fa-times-circle clear-search-icon"></i></span>
+
+</div>

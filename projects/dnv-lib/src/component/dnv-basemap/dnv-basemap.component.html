@@ -1,0 +1,37 @@
+<div class="basemap-container clear">
+  <div class="ml-2">
+    <div class="row mt-2 layer-title">
+      <div class="col-auto p-1 ml-2 mt-1" id="" style="font-size: 0.75rem;">BASEMAPS</div>
+      <div class="col">
+        <hr>
+      </div>
+      <button class="btn btn-link btn-basemap {{baseMapState.showBasemaps ? 'on' : ''}}" (click)="toggleBasemapList()"
+        title="Toggle Base Map Selection">
+        <i class="fas fa-chevron-up"></i>
+        <i class="fas fa-chevron-down"></i>
+      </button>
+    </div>
+    <div class="basemap-tiles">
+      <label id="baseMapsImg" class="text-left bg-transparent baseMapsImg" *ngFor="let basemap of selectedBasemap()"
+        [style.backgroundImage]="'url('+ basemap.thumbnail +')'" (click)="toggleBasemapList()"
+        title="Current Base Map: {{ basemap.name }}">
+        <span class="baseMapsSpan">
+          {{ basemap.name }}
+        </span>
+      </label>
+    </div>
+  </div>
+</div>
+<div class="basemap-list" [class.layers-div-slide]="hideBasemaps()">
+  <div class="basemap-tiles">
+    <div class="tile-wrapper" *ngFor="let basemap of activeBaseMaps()">
+      <label id="baseMapsImg" class="text-left bg-transparent  baseMapsImg"
+        [style.backgroundImage]="'url('+ basemap.thumbnail +')'" (click)="setBaseMap(basemap)"
+        [class.selected]="basemap.selected" title="{{ basemap.name }}">
+        <span class="baseMapsSpan">
+          {{ basemap.name }}
+        </span>
+      </label>
+    </div>
+  </div>
+</div>

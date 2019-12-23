@@ -1,0 +1,36 @@
+<div *ngIf="!hideNavbar">
+  <nav class="navbar navbar-expand fixed-bottom navbar-light bg-light">
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+        <li *ngFor="let dnvButton of _dnvNavState.dnvButtons; let i = index" class="nav-item"
+          [class.hidden-xs]="visibleClass(i)">
+          <button type="button" class="btn btn-link" style="margin: 2px; border-radius: 5px;"
+            [class.button-active]="isActive(dnvButton)" (click)="onClick(dnvButton)">
+            <span class="fas {{dnvButton.fontAwesome}}"></span> {{dnvButton.name}}
+          </button>
+        </li>
+
+        <li *ngIf="buttonCountExceedCutOff()" class="visible-xs nav-item" ngbDropdown placement="top-right"
+          [autoClose]="_dnvNavState.panelAutoClose" [open]="_dnvNavState.morePanelOpen"
+          (openChange)="onOpenClose($event)" container="body">
+          <button ngbDropdownToggle type="button" class="btn btn-link dropdown-toggle" aria-controls="dropdown-dropup"
+            style="margin: 2px; border-radius: 5px;" [class.button-active]="isActive(theMoreButton())"
+            (click)="onClick(theMoreButton())">
+            <span class="fas {{theMoreButton().fontAwesome}}"></span> {{theMoreButton().name}}
+          </button>
+          <ul id="dropdown-dropup" ngbDropdownMenu class="dropdown-menu dropdown-menu-right" role="menu"
+            aria-labelledby="button-dropup">
+            <li *ngFor="let dnvButton of buttonsOverCutOff()">
+              <button type="button" class="btn btn-link" [class.button-active]="isActive(dnvButton)"
+                (click)="onClick(dnvButton)">
+                <span class="fas {{dnvButton.fontAwesome}}"></span> {{dnvButton.name}}
+              </button>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <button (click)="hideNavbar = true" style="float:right;position: absolute; right: 10px; bottom: 10px; z-index: 1031; border: solid 1px #666;">X</button>
+</div>

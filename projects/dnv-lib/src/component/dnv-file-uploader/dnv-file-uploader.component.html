@@ -1,0 +1,53 @@
+<div class="file-uploader">
+    <div>
+        <div class="inline-block">
+            <div ngfDrop [(validDrag)]="baseDropValid" (fileOver)="hasBaseDropZoneOver=$event" [files]="files" (filesChange)="filesChange($event)"
+                [accept]="accept" [maxSize]="maxSize" [(dragFiles)]="dragFiles" [(lastInvalids)]="lastInvalids"
+                class="well my-drop-zone" [class.invalid-drag]="baseDropValid===false"
+                [class.valid-drag]="baseDropValid" [fileDropDisabled]="fileDropDisabled" style="text-align: center;">
+                Drop Files Here
+            </div>
+        </div>
+        <div class="inline-block text-center">
+            <label for="dnv-file-uploader-{{fileFieldID}}"><span class="btn btn-primary">Choose a file</span></label>
+            <input ngfSelect multiple type="file" [files]="files" (filesChange)="filesChange($event)" [accept]="accept" [maxSize]="maxSize"
+                [(lastInvalids)]="lastInvalids" class="btn" id="dnv-file-uploader-{{fileFieldID}}" name="dnv-file-uploader-{{fileFieldID}}" />
+        </div>
+    </div>
+
+    <div class="files-list">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th class="desktopOnly">Type</th>
+                    <th class="desktopOnly">Size</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of files;let i=index">
+                    <td>
+                        <div *ngIf="['image/gif','image/png','image/jpeg'].indexOf(item.type)>=0">
+                            <div class="previewIcon" [ngfBackground]="item"></div>
+                        </div>
+                        <strong>{{ item.name }}</strong>
+                    </td>
+                    <td class="desktopOnly" nowrap>
+                        {{ item.type }}
+                    </td>
+                    <td class="desktopOnly" nowrap>
+                        {{ item.size/1024/1024 | number:'.2' }} MB
+                    </td>
+                    <td nowrap>
+                        <button type="button" class="btn btn-danger btn-xs" (click)="files.splice(i,1)">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h4>{{ files.length }} Queued Files</h4>
+    </div>
+
+</div>

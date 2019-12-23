@@ -1,0 +1,36 @@
+.my-drop-zone {
+    border: dotted 3px lightgray;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+/* Default class applied to drop zones on over */
+.invalid-drag {
+    border: dotted 3px red;
+}
+
+.valid-drag {
+    border: dotted 3px green;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.previewIcon {
+    width: 90px;
+    height: 60px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+@media all and (max-width: 599px) {
+    .desktopOnly {
+        display: none;
+        width: 0;
+        height: 0;
+        opacity: 0;
+        visibility: collapse;
+    }
+}
