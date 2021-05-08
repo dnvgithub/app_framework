@@ -62,7 +62,7 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "leaflet": "^1.4.0",
-    "ng-packagr": "^4.7.1",
+    "ng-packagr": "^10.1.1",
     "node-sass": "^4.11.0",
     "proj4": "^2.5.0",
     "proj4leaflet": "^1.0.2",
